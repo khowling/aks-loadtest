@@ -1,0 +1,15 @@
+{
+    "records": [{
+        "title": "Red payload",
+		"details": {
+            "title": "Very RED",
+			"descriptions": [
+                {
+                    "id": "000111",
+					"short": "This is fake data",
+                    "infomration": "we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload,we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload, we need some data here to simulate a payload"
+                }
+            ]
+        }
+    }]
+}

@@ -1,0 +1,33 @@
+apiVersion: 2019-12-01
+location: westeurope
+name: nodedep-loadtest-master
+properties:
+  imageRegistryCredentials:
+  - server: _ACR_NAME_.azurecr.io
+    username: _ACR_NAME_
+    password: _ACR_PASSWD_
+  containers:
+  - name: nodedep-loadtest
+    properties:
+      image: _ACR_NAME_.azurecr.io/nodedep-loadtest:_NODEDEP_LOADTEST_TAG_
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 8089
+      - port: 5557
+      environmentVariables:
+      - name: LOCUST_MODE_MASTER
+        value: true
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 8089
+    - protocol: tcp
+      port: 5557
+    dnsNameLabel: nodedep-loadtest
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
