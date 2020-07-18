@@ -1,5 +1,26 @@
 
-## Setup Prometheus to monitor  app.
+
+
+## Build
+
+
+docker build -t ${ACR_NAME}.azurecr.io/nodedep-techdemo:${NODEDEP_TECHDEMO_TAG} .
+
+
+## deploy
+docker push ${ACR_NAME}.azurecr.io/nodedep-techdemo:${NODEDEP_TECHDEMO_TAG}
+sed -e "s|_NODEDEP_TECHDEMO_TAG_|${NODEDEP_TECHDEMO_TAG}|g" -e "s|_ACR_NAME_|${ACR_NAME}|g" ./deployment.yml | kubectl apply -f -
+
+
+## Run local
+CONNECTION_AGENT="{ \"keepAlive\" : true, \"maxSockets\" : 256 }" DEPENDENCY_URL_01="https://nodedep-dependency-01.westeurope.azurecontainer.io/" DEPENDENCY_URL_02="https://nodedep-dependency-02.westeurope.azurecontainer.io/" DEPENDENCY_TIMEOUT=7000 NODE_TLS_REJECT_UNAUTHORIZED="0"  node bin/www
+
+
+
+## notes:  Setup AKS Prometheus operator to monitor app.
+
+## NOTE: This config is already included in the ```deployment.yml```, following is just for notes
+
 
 The Prometheus Operator __Does not__ use prometheus.io/scrape annotations for Kubernetes Service Discovery, __ServiceMonitors__ should be used instead. The annotation is very limited by its nature and there's no feasible way to support anything beyond "scrape on" and a single port.
 
@@ -26,17 +47,3 @@ results in 3 metrics
 
 
 
-
-## Build
-
-
-docker build -t ${ACR_NAME}.azurecr.io/nodedep-techdemo:${NODEDEP_TECHDEMO_TAG} .
-
-
-## deploy
-docker push ${ACR_NAME}.azurecr.io/nodedep-techdemo:${NODEDEP_TECHDEMO_TAG}
-sed -e "s|_NODEDEP_TECHDEMO_TAG_|${NODEDEP_TECHDEMO_TAG}|g" -e "s|_ACR_NAME_|${ACR_NAME}|g" ./deployment.yml | kubectl apply -f -
-
-
-## Run local
-CONNECTION_AGENT="{ \"keepAlive\" : true, \"maxSockets\" : 256 }" DEPENDENCY_URL_01="https://nodedep-dependency-01.westeurope.azurecontainer.io/" DEPENDENCY_URL_02="https://nodedep-dependency-02.westeurope.azurecontainer.io/" DEPENDENCY_TIMEOUT=7000 NODE_TLS_REJECT_UNAUTHORIZED="0"  node bin/www

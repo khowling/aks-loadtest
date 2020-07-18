@@ -1,5 +1,5 @@
 
-# Build
+
 
 ## Build container
 
@@ -7,9 +7,15 @@ docker build --pull --rm -t ${ACR_NAME}.azurecr.io/nodedep-loadtest:${NODEDEP_LO
 docker push ${ACR_NAME}.azurecr.io/nodedep-loadtest:${NODEDEP_LOADTEST_TAG}
 
 
-## Launch
+## Launch into ACI
 
-./launch.sh
+setup environment variables for your continer registry and run ```./launch.sh``
+
+
+* NODEDEP_LOADTEST_TAG=
+* DEPLOY_RG=
+* ACR_RG=
+* ACR_NAME=
 
 
 ## Open

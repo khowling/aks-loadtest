@@ -8,6 +8,16 @@ docker build --pull --rm -t ${ACR_NAME}.azurecr.io/nodedep-dependency:${NODEDEP_
 docker push ${ACR_NAME}.azurecr.io/nodedep-dependency:${NODEDEP_DEPENDENCY_TAG}
 ```
 
+## Launch into ACI
+
+setup environment variables for your continer registry and run ```./launch.sh``
+
+
+* NODEDEP_DEPENDENCY_TAG=
+* DEPLOY_RG=
+* ACR_RG=
+* ACR_NAME=
+
 ## Build nginx config container
 
 TEST
