@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '211bf918-89c0-4815-990c-5f3b3b816210'
   imageRepository: 'aksloadtest'
   containerRegistry: 'khcommon.azurecr.io'
-  dockerfilePath: '/techdemo/Dockerfile'
+  dockerfilePath: 'techdemo/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'khcommon5246b954-auth'
 
@@ -40,9 +40,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-          
-    - upload: manifests
-      artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -70,8 +67,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/techdemo/deployment.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
