@@ -11,7 +11,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'e41aa109-4e80-4620-9c71-e9cf8d8b8e64'
+  dockerRegistryServiceConnection: '60caea9e-cb40-4252-bd41-9bd03dca773b'
   imageRepository: 'aksloadtest'
   containerRegistry: 'khcommon.azurecr.io'
   dockerfilePath: 'techdemo/Dockerfile'
