@@ -40,6 +40,11 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/techdemo/deployment.yml'
+        ArtifactName: 'techdemo_deployment_yml'
+        publishLocation: 'Container'
 
 - stage: Deploy
   displayName: Deploy stage
@@ -67,7 +72,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/techdemo/deployment.yml
+                $(Pipeline.Workspace)/techdemo_deployment_yml/deployment.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
