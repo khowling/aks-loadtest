@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodedep-techdemo
-        image: _ACR_NAME_.azurecr.io/nodedep-techdemo:_NODEDEP_TECHDEMO_TAG_
+        image: khcommon.azurecr.io/aksloadtest
         env:
 #          - name: CONNECTION_AGENT
 #            value: "{ \"keepAlive\" : true, \"maxSockets\" : 5000 }"
